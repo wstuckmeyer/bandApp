@@ -16,7 +16,6 @@
 		<h5><%=t.venue.city%>, <%=t.venue.state%></h5>
 		<% if session[:venue_id]==t.venue.id%>
 			<a><%= link_to "Delete", t, method: :delete %></a>
-			<a><%= link_to "Edit", t, method: :get%></a>
 		<%end%>
 	</div>
 </div>

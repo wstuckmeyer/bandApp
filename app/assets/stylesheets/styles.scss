@@ -7,7 +7,7 @@ $teal:#00BCD4;
 $white:#FFFFFF;
 $secondary-text:#757575;
 .theseevents{
-	position:absolute;
+	position:relative;
 }
 #nav-links{
 	list-style:none;
@@ -73,9 +73,6 @@ li:hover, #band:hover, #event:hover{
 	margin-top:14%;
 }
 #logModal, #eventModal, #bandModal{
-	position:absolute;
-	text-align:center;
-	margin-left:75%;
 	z-index:9999;
 	width:20%;
 	height:40%;
@@ -84,7 +81,7 @@ li:hover, #band:hover, #event:hover{
 	display:none;
 	background-color:$teal;
 	opacity:0.8;
-	margin-top:2%;
+	margin-top:-68%;
 
 
 }
@@ -94,7 +91,10 @@ li:hover, #band:hover, #event:hover{
 }
 #eventModal,#bandModal{
 	display:none;
-	position:absolute;
+	position: fixed;
+    left:2%;
+    bottom:2px;
+    z-index: 1000;
 	background-color:$primary-pink;
 	color:$white;
 }
