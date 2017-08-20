@@ -1,0 +1,23 @@
+<% @event = Event.all %>
+
+<% @event.each do |t| %>
+<div class='row theseevents'>
+	<div class='col-4'>
+		
+	</div>
+	<div class='col-2' id='eventsphoto'>
+	<%=image_tag t.band.avatar.url%>
+	</div>
+	<div class='col-2 events'>
+		<h1><%= link_to t.venue.name, t.venue, method: :get %></h1>
+		
+		<h2><%=t.band.name%></h2>
+		<h4><%= t.date %></h4>
+		<h5><%=t.venue.city%>, <%=t.venue.state%></h5>
+		<% if session[:venue_id]==t.venue.id%>
+			<a><%= link_to "Delete", t, method: :delete %></a>
+			<a><%= link_to "Edit", t, method: :get%></a>
+		<%end%>
+	</div>
+</div>
+<%end%>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BandApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+	  <div class='row' id='nav'>
+	  <div class='col-4' id='leftlinks'>
+	  <% if session[:venue_id]==nil%>
+	  <%else%>
+	  	
+	  		<a id='band'>Add Band</a>
+			<a id='event'>Create Event</a>
+	  	
+	  	<%end%>
+	  	</div>
+	  	<div class='col-4' id='navlogo'>
+	  		<h1 id='navHead'>Bands</h1>
+	  	</div>
+	  	<div class='col-4'>
+	  		<ul id='nav-links'>
+	  			<% if session[:venue_id]==nil%>
+    				<li id='login'><a>Log-in</a></li>
+    			<%else%>
+    				<li><%= link_to "Log out", logout_path, method: :delete %></li>
+    			<%end%>	
+	  			<li><%= link_to 'Home', events_path%></li>
+	  			<li><%= link_to 'Venues', venues_path%></li>
+	  		</ul>
+	  	</div>
+	  </div>
+
+
+    <%= yield %>
+	<div id='logModal'>
+	    	<h3 id='logintitle'>Log In</h3>
+	    	<h6 id='signup'>Sign Up</h6>
+	    	<div id='loginform'>
+	    		<%=form_for :session, url: login_path do |t|%>
+	    		<%=t.label :Username%>
+	    		<br>
+	    		<%=t.text_field :username%>
+	    	<br>
+	    		<%=t.label :Password%>
+	    		<br>
+	    		<%=t.text_field :password%>
+	    		<br>
+	    		<%=t.submit%>
+	    		<%end%>
+	    	</div>
+	    	<div id='signupform'>
+	    		<%=form_for :venues, url: venues_path, html: {multipart: true} do |t| %>
+		    					<%=t.label :Name%>
+		    					<%=t.text_field :name%>
+		    					<br>
+		    					<%=t.label :City%>
+		    					<%=t.text_field :city%>
+		    					<br>
+		    					<%=t.label :State%>
+		    					<%=t.text_field :state %>
+		    					<br>
+		    					<%=t.label :Family_Friendly?%>
+		    					<%=t.check_box :familyfriendly%>
+		    					<br>
+		    					<%=t.label :Username%>
+		    					<%=t.text_field :username%>
+		    					<br>
+		    					<%=t.label :Password%>
+		    					<%=t.text_field :password%>
+		    					<br>
+		    					<%=t.label :Venue_Photo%>
+		    					<%=t.file_field :avatar%>
+		    					<br>
+							    <%=t.submit%>
+							    
+		    				<%end%>
+	    		
+	    	</div>
+	    </div>
+		<div id='eventModal'>
+		    			<h3 id='addevent'>Add Event</h3>
+		    				<%=form_for :events, url: events_path, html: {multipart: true} do |t| %>
+		    					<%=t.label :Date%>
+		    					<%=t.date_field :date%>
+		    					<br>
+		    					<%=t.label :Alchohol?%>
+		    					<%=t.check_box :alcohol%>
+		    					<br>
+		    					<%=t.label :Select_Artist%>
+		    					<%=t.collection_select :band_id, Band.order(:name),:id,:name, include_blank: true %>
+		    					<br>
+							    <%=t.submit%>
+							    
+		    				<%end%>
+		    		</div>
+<div id='bandModal'>
+		    			<h3 id='addband'>Add Band</h3>
+		    				<%=form_for :bands, url: bands_path, html: {multipart: true} do |t| %>
+		    					<%=t.label :Name%>
+		    					<%=t.text_field :name%>
+		    					<br>
+		    					<%=t.label :Genre%>
+		    					<%=t.text_field :genre%>
+		    					<br>
+		    					<%=t.label :Explicit%>
+		    					<%=t.check_box :explicit%>
+		    					<br>
+		    					 <%= t.label :avatar %><br>
+							    <%= t.file_field :avatar %>
+							    <br>
+							    <%=t.submit%>
+							    
+		    				<%end%>
+		    		</div>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </body>
+</html>

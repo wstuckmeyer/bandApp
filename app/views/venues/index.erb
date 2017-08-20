@@ -1,0 +1,25 @@
+
+<% @venue.each do |t|%>
+<div class='row venues'>
+	<div class='col-3'></div>
+	<div class='col-4' class='venueshow'>
+		<%=image_tag t.avatar.url%>
+		<div id='text'>
+		<h2><%= link_to t.name, t, method: :get %>
+				<br>
+			<%=t.city%>, <%=t.state%>
+				<br>
+			<% if t.familyfriendly == true %>
+				Family Friendly
+			<%else%>
+				18+
+			<% end %>
+		</h2>
+		</div>
+	</div>
+	<!-- <div class='col-4' id='venuephotos'>
+		
+	</div>
+ -->
+</div>
+<%end%>

@@ -1,0 +1,20 @@
+<div class='row'>
+	<div class='col-2'></div>
+	<div class='col-8' id='show'>
+		<h1><%=@venue.name%></h1>
+	</div>
+</div>
+
+
+
+<% @venue.events.each do |t| %>
+<div class='row'>
+	<div class='col-4 bandImg'>
+		<%=image_tag t.band.avatar.url%></a>
+	<div class='col-4 events'>
+		<h2><%=t.band.name%></h2>
+		<h4><%= t.date %></h4>
+		<h5><%=t.venue.city%>, <%=t.venue.state%></h5>
+	</div>
+</div>
+<%end%>
